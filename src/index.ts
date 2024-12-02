@@ -44,6 +44,23 @@ export const buildHotoana = <Cfg extends HotoanaConfig<Kind>>(
 			return api;
 		},
 
+		with: (
+			process: (currentCase: Cfg[keyof Cfg] & HotoanaCase<keyof Cfg>) => void,
+		) => {
+			process(states.currentCase);
+			return api;
+		},
+
+		match: <MK extends keyof Cfg>(
+			kind: MK,
+			process: (matchedCase: Cfg[MK] & HotoanaCase<MK>) => void,
+		) => {
+			if (states.currentCase._kind === kind) {
+				process(states.currentCase as Cfg[MK] & HotoanaCase<MK>);
+			}
+			return api;
+		},
+
 		get union(): Cfg[keyof Cfg] & HotoanaCase<keyof Cfg> {
 			return states.currentCase;
 		},
