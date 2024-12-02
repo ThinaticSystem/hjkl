@@ -1,0 +1,12 @@
+{
+  "name": "hjkl",
+  "version": "0.1.0",
+  "description": "Hotoana Jotai Kanri Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ThinaticSystem",
+  "license": "ISC"
+}
