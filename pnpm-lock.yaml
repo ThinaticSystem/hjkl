@@ -11,6 +11,9 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.2
 
 packages:
 
@@ -67,6 +70,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  typescript@5.7.2:
+    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
 snapshots:
 
   '@biomejs/biome@1.9.4':
@@ -103,3 +111,5 @@ snapshots:
 
   '@biomejs/cli-win32-x64@1.9.4':
     optional: true
+
+  typescript@5.7.2: {}
