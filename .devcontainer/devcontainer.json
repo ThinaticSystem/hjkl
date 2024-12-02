@@ -15,7 +15,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"biomejs.biome@2024.11.301111"
+				"biomejs.biome@2024.11.301111",
+				"vitest.explorer@1.8.1"
 			]
 		}
 	}
