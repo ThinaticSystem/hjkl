@@ -38,10 +38,16 @@ export const buildHotoana = <Cfg extends HotoanaConfig<Kind>>(
 	};
 
 	const api = {
-		to: <MK extends keyof Cfg>(kind: MK) => {
+		_to: <MK extends keyof Cfg>(kind: MK) => {
 			const newCase = tansu.get(kind) as Cfg[MK] & HotoanaCase<MK>;
 			states.currentCase = newCase;
 			return api;
+		},
+
+		_go: <MK extends keyof Cfg>(kind: MK): Cfg[MK] & HotoanaCase<MK> => {
+			const newCase = tansu.get(kind) as Cfg[MK] & HotoanaCase<MK>;
+			states.currentCase = newCase;
+			return newCase;
 		},
 
 		with: (
@@ -63,12 +69,6 @@ export const buildHotoana = <Cfg extends HotoanaConfig<Kind>>(
 
 		get union(): Cfg[keyof Cfg] & HotoanaCase<keyof Cfg> {
 			return states.currentCase;
-		},
-
-		go: <MK extends keyof Cfg>(kind: MK): Cfg[MK] & HotoanaCase<MK> => {
-			const newCase = tansu.get(kind) as Cfg[MK] & HotoanaCase<MK>;
-			states.currentCase = newCase;
-			return newCase;
 		},
 	};
 	return api;

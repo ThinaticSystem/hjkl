@@ -9,15 +9,8 @@ describe('playground', () => {
 		'honi',
 	);
 
-	it('union', () => {
-		expect(hotoana.union).toStrictEqual({
-			_kind: 'honi',
-			v1: 1,
-		});
-	});
-
-	it('to', () => {
-		const result = hotoana.to('punyu');
+	it('_to', () => {
+		const result = hotoana._to('punyu');
 		expect(result.union).toStrictEqual({
 			_kind: 'punyu',
 			v2: 2,
@@ -25,31 +18,8 @@ describe('playground', () => {
 		expect(result).toBe(hotoana); // Same object reference (for method chaining)
 	});
 
-	it('with', () => {
-		const result = hotoana.with((currentCase) => {
-			expect(currentCase._kind).toBe('punyu');
-		});
-		expect(result).toBe(hotoana); // Same object reference (for method chaining)
-	});
-
-	describe('match', () => {
-		it('matched', () => {
-			const result = hotoana.match('punyu', (matchedCase) => {
-				expect(matchedCase._kind).toBe('punyu');
-			});
-			expect(result).toBe(hotoana); // Same object reference (for method chaining)
-		});
-
-		it('not matched', () => {
-			const result = hotoana.match('honi', (_matchedCase) => {
-				expect.fail('Callback should not be called');
-			});
-			expect(result).toBe(hotoana); // Same object reference (for method chaining)
-		});
-	});
-
-	it('go', () => {
-		const newCase = hotoana.go('honi');
+	it('_go', () => {
+		const newCase = hotoana._go('honi');
 		scope(
 			{
 				_kind: 'honi',
@@ -60,5 +30,35 @@ describe('playground', () => {
 				expect(hotoana.union).toStrictEqual(expectedNewCase);
 			},
 		);
+	});
+
+	it('with', () => {
+		const result = hotoana.with((currentCase) => {
+			expect(currentCase._kind).toBe('honi');
+		});
+		expect(result).toBe(hotoana); // Same object reference (for method chaining)
+	});
+
+	describe('match', () => {
+		it('matched', () => {
+			const result = hotoana.match('honi', (matchedCase) => {
+				expect(matchedCase._kind).toBe('honi');
+			});
+			expect(result).toBe(hotoana); // Same object reference (for method chaining)
+		});
+
+		it('not matched', () => {
+			const result = hotoana.match('punyu', (_matchedCase) => {
+				expect.fail('Callback should not be called');
+			});
+			expect(result).toBe(hotoana); // Same object reference (for method chaining)
+		});
+	});
+
+	it('union', () => {
+		expect(hotoana.union).toStrictEqual({
+			_kind: 'honi',
+			v1: 1,
+		});
 	});
 });
